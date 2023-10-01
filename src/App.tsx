@@ -1,6 +1,5 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import './index.css';
-import AppContainer from './components/AppContainer';
 import NavBar from './components/NavBar';
 
 

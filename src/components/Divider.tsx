@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, StyleHTMLAttributes } from 'react'
+import React from 'react'
 
 export function Divider() {
   return (

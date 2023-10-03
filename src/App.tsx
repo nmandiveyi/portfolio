@@ -4,6 +4,8 @@ import NavBar from './components/NavBar';
 import Intro from './components/Intro';
 import { Divider } from './components/Divider';
 import Professional from './components/Professional';
+import Footer from './components/Footer';
+import Skills from './components/Skills';
 
 
 
@@ -15,6 +17,8 @@ function App() {
         <Divider />
         <Professional />
         <Divider />
+        <Skills />
+        <Footer />
       </div>
   );
 }

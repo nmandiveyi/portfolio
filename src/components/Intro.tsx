@@ -7,7 +7,7 @@ function Intro() {
         Hi there, I am Ngonidzashe Mandiveyi
       </div>
       <div style={{ paddingTop: '20px'}}>
-        I am a young Canada based Zimbabwean software engineering professional
+        {"I am a Zimbabwean software engineering professional currently based in Toronto, Canada."}
       </div>
     </div>
   )

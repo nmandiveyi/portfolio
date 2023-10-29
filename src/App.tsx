@@ -11,7 +11,7 @@ import Skills from './components/Skills';
 
 function App() {
   return (
-      <div className='bg-primary col-span-6 col-start-4'>
+      <div className='relative bg-primary col-span-6 col-start-4 min-h-screen'>
         <NavBar />
         <Intro />
         <Divider />

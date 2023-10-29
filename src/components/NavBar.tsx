@@ -14,26 +14,38 @@ function NavBar() {
 
       <div className='flex flex-row'>
         <div className='px-2'>{ "Writing" }</div>
-        <div className='px-2'>{ "Resume" }</div>
+        <a href='https://drive.google.com/file/d/1f7CuSklX8iSEtfpOfAqKjJtkIAXvmWr9/view?usp=sharing' target='_blank' className='px-2'>{ "Resume" }</a>
       </div>
 
       <div className='flex flex-row'>
-        <div className='px-2'>
+        <a 
+          className='px-2'
+          href='https://www.instagram.com/nmandiveyi/'
+        >
           <IGLogo />
-        </div>
-        <div className='px-2'>
+        </a>
+        <a 
+          className='px-2'
+          href='https://twitter.com/ngonimandiveyi'
+        >
           <XLogo />
-        </div>
-        <div className='px-2'>
+        </a>
+        <a 
+          className='px-2'
+          href='https://www.linkedin.com/in/nmandiveyi/'
+        >
           <INLogo />
-        </div>
-        <div className='px-2'>
+        </a>
+        <a 
+          className='px-2'
+          href='https://github.com/nmandiveyi'
+        >
           <GHLogo />
-        </div>
+        </a>
         
       </div>
     </div>
   )
 }
 
-export default NavBar
+export default NavBar;

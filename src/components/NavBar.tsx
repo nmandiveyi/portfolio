@@ -14,7 +14,13 @@ function NavBar() {
 
       <div className='flex flex-row'>
         <div className='px-2'>{ "Writing" }</div>
-        <a href='https://drive.google.com/file/d/1f7CuSklX8iSEtfpOfAqKjJtkIAXvmWr9/view?usp=sharing' target='_blank' className='px-2'>{ "Resume" }</a>
+        <a 
+          href='https://drive.google.com/file/d/1f7CuSklX8iSEtfpOfAqKjJtkIAXvmWr9/view?usp=sharing' 
+          target='_blank' 
+          rel="noreferrer" 
+          className='px-2'>
+            { "Resume" }
+        </a>
       </div>
 
       <div className='flex flex-row'>

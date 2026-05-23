@@ -1,46 +1,53 @@
-# Getting Started with Create React App
+# Ngonidzashe Mandiveyi — Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal portfolio site built with React 19, Vite, Tailwind CSS v4, TanStack Router, TanStack Query, Zustand, and shadcn/ui.
 
-## Available Scripts
+## Stack
 
-In the project directory, you can run:
+- **React 19** + TypeScript
+- **Vite** — dev server and production build
+- **Tailwind CSS v4** — styling and design tokens
+- **shadcn/ui** — UI primitives (Button)
+- **TanStack Router** — type-safe routing
+- **TanStack Query** — ready for external API fetching
+- **Zustand** — client state (mobile navigation)
+- **React Hook Form + Zod** — ready for future forms
 
-### `npm start`
+## Getting started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+pnpm install
+pnpm dev
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Open [http://localhost:5173](http://localhost:5173).
 
-### `npm test`
+## Scripts
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Start development server |
+| `pnpm build` | Type-check and build for production |
+| `pnpm preview` | Preview production build locally |
+| `pnpm lint` | Run TypeScript checks |
 
-### `npm run build`
+## Project structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+src/
+  components/     # Layout, sections, pages, UI
+  content/        # Article body components
+  data/           # Typed site content
+  routes/         # TanStack Router file routes
+  stores/         # Zustand stores
+  styles/         # Theme and fonts
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Adding content
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Projects, experience, interests:** edit files in `src/data/`
+- **New article:** add metadata to `src/data/articles.ts`, create content in `src/content/articles/`, register in `src/content/articles/index.ts`
 
-### `npm run eject`
+## Deployment
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Build output goes to `dist/`. Configure your static host with SPA fallback so client-side routes (e.g. `/article/...`) resolve correctly.

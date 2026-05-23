@@ -1,0 +1,16 @@
+{
+  "name": "Ngonidzashe Mandiveyi",
+  "short_name": "N. Mandiveyi",
+  "description": "Senior Engineer at McKinsey & Company — AI automation, NOCURA, FairSign",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d0b",
+  "theme_color": "#0d0d0b",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

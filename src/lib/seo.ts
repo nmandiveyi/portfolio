@@ -20,7 +20,7 @@ export const seo = {
   defaultTitle:
     'Ngonidzashe Mandiveyi — Senior Engineer at McKinsey & Company | Toronto',
   defaultDescription:
-    'Portfolio of Ngonidzashe Mandiveyi, Senior Engineer I at McKinsey & Company in Toronto. AI-enabled automation, invoice reconciliation at $5B+ procurement scale, founder of NOCURA (Canadian PR / IRCC NOC analysis), and builder of FairSign.',
+    'Portfolio of Ngonidzashe Mandiveyi, Senior Engineer I at McKinsey & Company in Toronto. AI-enabled automation, invoice reconciliation at $5B+ procurement scale, and founder of NOCURA (Canadian PR / IRCC NOC analysis).',
 } as const
 
 export function canonicalUrl(path = '/') {
@@ -67,7 +67,6 @@ export function personJsonLd() {
       'AI-enabled automation',
       'Invoice reconciliation',
       'NOCURA',
-      'FairSign',
       'FastAPI',
       'TypeScript',
       'Express Entry',

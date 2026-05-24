@@ -41,7 +41,7 @@ export const site = {
     { label: 'Location', value: 'Toronto, ON · Canada' },
     { label: 'Education', value: 'BA&Sc Physics + CS\nQuest University · 3.80 GPA' },
     { label: 'Currently', value: 'McKinsey & Company · Senior Engineer' },
-    { label: 'Building', value: 'FairSign — contract risk scanner' },
+    { label: 'Building', value: 'NOCURA — IRCC NOC analysis' },
     {
       label: 'Recognition',
       value: "Mastercard Foundation Scholar\nQuest University Canada President's List (×2)",

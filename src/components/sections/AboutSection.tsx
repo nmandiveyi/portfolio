@@ -4,7 +4,7 @@ import { type } from '@/lib/typography'
 
 export function AboutSection() {
   return (
-    <section className="px-6 py-16 md:px-12 md:py-24" id="about">
+    <section className="page-x py-16 md:py-24" id="about">
       <SectionHeader number="01" title="About" />
 
       <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-24">
@@ -20,15 +20,15 @@ export function AboutSection() {
           {site.aboutDetails.map((detail) => (
             <div
               key={detail.label}
-              className="flex items-center justify-between border-b border-[var(--border)] py-[1.1rem]"
+              className="flex min-w-0 items-center justify-between border-b border-[var(--border)] py-[1.1rem]"
             >
               <span className={type.label}>{detail.label}</span>
               {'link' in detail && detail.link ? (
-                <a href={detail.link} className={`text-right no-underline ${type.bodyAccent}`}>
+                <a href={detail.link} className={`min-w-0 shrink text-right no-underline ${type.bodyAccent}`}>
                   {detail.value}
                 </a>
               ) : (
-                <span className={`text-right whitespace-pre-line ${type.bodyEmphasis}`}>
+                <span className={`min-w-0 shrink text-right whitespace-pre-line ${type.bodyEmphasis}`}>
                   {detail.value}
                 </span>
               )}

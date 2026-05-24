@@ -8,7 +8,7 @@ import { type } from '@/lib/typography'
 
 export function WritingSection() {
   return (
-    <section className="px-6 py-16 md:px-12 md:py-24" id="writing">
+    <section className="page-x py-16 md:py-24" id="writing">
       <SectionHeader number="04" title="Writing" />
 
       <div className="max-w-2xl">
@@ -16,7 +16,7 @@ export function WritingSection() {
           <Link
             key={article.slug}
             href={`/article/${article.slug}`}
-            className="interactive relative block overflow-hidden p-6 no-underline transition-all duration-200 md:p-10"
+            className="interactive bleed-x relative block overflow-hidden py-6 no-underline transition-all duration-200 md:py-10"
             style={{ background: 'var(--surface)' }}
             onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
               e.currentTarget.style.background = 'var(--surface2)'
@@ -42,7 +42,7 @@ export function WritingSection() {
               ))}
             </div>
 
-            <div className="flex items-center justify-between border-t border-[var(--border)] pt-4">
+            <div className="flex flex-col gap-3 border-t border-[var(--border)] pt-4 sm:flex-row sm:items-center sm:justify-between">
               <span className={type.meta}>{article.date}</span>
               <span className={type.meta}>{article.readTime}</span>
               <span className={`flex items-center gap-2 ${type.action}`}>

@@ -14,7 +14,7 @@ export const site = {
     email: 'mailto:ngonidzashehh@gmail.com',
   },
   stats: [
-    { num: '$5B+', label: 'Procurement spend processed' },
+    { num: '$5B+', label: 'Client spend analyzed' },
     { num: '3+', label: 'Years at McKinsey' },
     { num: '10K+', label: 'Property listings managed' },
     { num: '97%', label: 'Model accuracy in production' },

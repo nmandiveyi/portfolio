@@ -5,7 +5,7 @@ export const experiences = [
     role: 'Senior Engineer I',
     description:
       'Designing and delivering scalable AI-enabled digital and automation transformations across service operations, utilities, MedTech, procurement, and GenAI. Built an AI-powered invoice reconciliation system processing $5B+ in procurement spend, surfacing cost reduction opportunities across client portfolios.',
-    highlight: '↑ $5B+ in procurement spend processed',
+    highlight: '↑ $5B+ in client spend analyzed',
   },
   {
     company: 'Squamish.RealEstate',

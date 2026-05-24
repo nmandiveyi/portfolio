@@ -36,7 +36,7 @@ export function ArticlePage({ slug }: ArticlePageProps) {
   return (
     <div>
       <nav
-        className="fixed top-0 right-0 left-0 z-[100] flex items-center justify-between border-b px-6 py-6 md:px-12"
+        className="fixed top-0 right-0 left-0 z-[100] flex items-center justify-between border-b page-x py-6"
         style={{ background: 'rgba(13,13,11,0.97)', borderColor: 'var(--border)' }}
       >
         <Link
@@ -62,7 +62,7 @@ export function ArticlePage({ slug }: ArticlePageProps) {
         </a>
       </nav>
 
-      <div className="mx-auto max-w-[720px] px-6 pt-32 pb-24 md:px-12">
+      <div className="page-x mx-auto max-w-[720px] pt-32 pb-24">
         <div className="mb-16">
           <div className="mb-6 flex items-center gap-4 font-mono text-[10px] font-medium tracking-[0.2em] text-[var(--accent2)] uppercase">
             <span className="block h-px w-6 bg-[var(--accent2)]" />

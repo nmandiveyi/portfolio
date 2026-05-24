@@ -1,19 +1,20 @@
 'use client'
 
 import { SectionHeader } from '@/components/shared/SectionHeader'
+import { ExternalArrow } from '@/components/shared/ExternalArrow'
 import { projects } from '@/data/projects'
 import { type } from '@/lib/typography'
 
 export function ProjectsSection() {
   return (
-    <section className="px-6 py-16 md:px-12 md:py-24" id="projects">
+    <section className="page-x py-16 md:py-24" id="projects">
       <SectionHeader number="03" title="Projects" />
 
       <div className="max-w-2xl">
         {projects.map((project) => (
           <div
             key={project.title}
-            className="interactive group relative overflow-hidden p-6 transition-all duration-200 md:p-10"
+            className="interactive group bleed-x relative overflow-hidden py-6 transition-all duration-200 md:py-10"
             style={{ background: 'var(--surface)' }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = 'var(--surface2)'
@@ -22,7 +23,7 @@ export function ProjectsSection() {
               e.currentTarget.style.background = 'var(--surface)'
             }}
           >
-            <div className="pointer-events-none absolute top-8 right-8 font-serif text-[72px] leading-none font-normal text-[var(--border)]">
+            <div className="pointer-events-none absolute top-8 right-[var(--page-gutter-right)] font-serif text-[72px] leading-none font-normal text-[var(--border)]">
               {project.num}
             </div>
 
@@ -48,9 +49,9 @@ export function ProjectsSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Visit ${project.title}`}
-                className="text-[18px] text-[var(--dim)] no-underline transition-colors duration-200 hover:text-[var(--accent)]"
+                className="text-[var(--dim)] no-underline transition-colors duration-200 hover:text-[var(--accent)]"
               >
-                ↗
+                <ExternalArrow className="h-[18px] w-[18px]" />
               </a>
             </div>
           </div>

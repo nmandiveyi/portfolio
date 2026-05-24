@@ -1,10 +1,11 @@
 import { Button } from '@/components/ui/button'
+import { ExternalArrow } from '@/components/shared/ExternalArrow'
 import { site } from '@/data/site'
 import { type } from '@/lib/typography'
 
 export function HeroSection() {
   return (
-    <section className="relative grid min-h-screen grid-cols-1 overflow-hidden px-6 md:px-12 lg:grid-cols-2">
+    <section className="relative grid min-h-screen grid-cols-1 overflow-x-clip page-x lg:grid-cols-2">
       <div
         className="pointer-events-none absolute -top-[20%] -right-[10%] h-[600px] w-[600px]"
         style={{
@@ -41,7 +42,9 @@ export function HeroSection() {
             <a href={site.links.email}>Get in touch →</a>
           </Button>
           <Button variant="outline" asChild>
-            <a href={site.links.github}>GitHub ↗</a>
+            <a href={site.links.github} className="inline-flex items-center gap-1.5">
+              GitHub <ExternalArrow className="h-3 w-3" />
+            </a>
           </Button>
         </div>
       </div>

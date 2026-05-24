@@ -9,7 +9,7 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="flex flex-col items-center justify-between gap-6 border-t border-[var(--border)] px-6 py-8 md:flex-row md:gap-0 md:px-12 md:py-12">
+    <footer className="page-x flex flex-col items-center justify-between gap-6 border-t border-[var(--border)] py-8 md:flex-row md:gap-0 md:py-12">
       <span className={type.footer}>
         © {site.copyrightYear} {site.name}
       </span>

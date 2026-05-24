@@ -2,6 +2,8 @@
 
 :root {
   --font-size: 16px;
+  --page-gutter-left: max(1.5rem, env(safe-area-inset-left, 0px));
+  --page-gutter-right: max(1.5rem, env(safe-area-inset-right, 0px));
 
   --bg: #0d0d0b;
   --surface: #141412;
@@ -62,6 +64,27 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+@media (min-width: 768px) {
+  :root {
+    --page-gutter-left: max(3rem, env(safe-area-inset-left, 0px));
+    --page-gutter-right: max(3rem, env(safe-area-inset-right, 0px));
+  }
+}
+
+@layer utilities {
+  .page-x {
+    padding-left: var(--page-gutter-left);
+    padding-right: var(--page-gutter-right);
+  }
+
+  .bleed-x {
+    margin-left: calc(-1 * var(--page-gutter-left));
+    margin-right: calc(-1 * var(--page-gutter-right));
+    padding-left: var(--page-gutter-left);
+    padding-right: var(--page-gutter-right);
+  }
+}
+
 @layer base {
   *,
   *::before,
@@ -75,6 +98,7 @@
   html {
     scroll-behavior: smooth;
     font-size: var(--font-size);
+    overflow-x: clip;
   }
 
   body {
@@ -82,7 +106,8 @@
     color: var(--text);
     font-family: var(--font-sans);
     min-height: 100vh;
-    overflow-x: hidden;
+    max-width: 100%;
+    overflow-x: clip;
   }
 
   @media (pointer: fine) and (min-width: 1024px) {

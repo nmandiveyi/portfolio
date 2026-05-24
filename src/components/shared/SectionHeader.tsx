@@ -16,5 +16,9 @@ export function SectionHeader({ number, title }: SectionHeaderProps) {
 }
 
 export function SectionDivider() {
-  return <div className="mx-6 h-px bg-[var(--border)] md:mx-12" />
+  return (
+    <div className="page-x">
+      <div className="h-px bg-[var(--border)]" />
+    </div>
+  )
 }

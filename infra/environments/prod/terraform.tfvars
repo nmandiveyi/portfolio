@@ -1,4 +1,4 @@
-# do_token — prefer TF_VAR_do_token in CI/local (never commit the real value):
+# do_token — prefer TF_VAR_do_token (never commit the real value):
 #   export TF_VAR_do_token="dop_v1_..."
 # Or set locally in an untracked override file, e.g. terraform.local.tfvars
 #

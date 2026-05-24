@@ -2,16 +2,19 @@
 
 Terraform for deploying the portfolio site (Vite + React SPA) to DigitalOcean App Platform, with optional phased Cloudflare DNS and WAF in front of the static site.
 
+**State:** local only (`terraform.tfstate` in `environments/prod/` — gitignored). Run `terraform apply` from your laptop.
+
+**App deploys:** automatic on push to `main` via App Platform `deploy_on_push`. No GitHub Actions workflows needed for infra or frontend deploys.
+
 ## Layout
 
 ```
 environments/
-  prod/                       # root module — applies/owns all of prod
-  bootstrap-state-bucket/     # Spaces bucket for prod remote backend (local state only — run once)
+  prod/                       # root module — apply from here
 modules/
   cloudflare/                 # CF zone, zone settings, lightweight WAF rulesets
   cloudflare-dns/             # CF apex/www CNAME records → App Platform
-  dns/                        # Legacy DigitalOcean DNS (apex zone only); disabled once CF DNS is active
+  dns/                        # DigitalOcean DNS (apex zone only); disabled once CF DNS is active
   frontend/                   # App Platform static site (Vite build → dist/)
 ```
 
@@ -47,39 +50,22 @@ Initial apply can run with all Cloudflare flags `false` to stand up DO DNS + App
 1. **Gray cloud:** set `cloudflare_proxy_enabled = false` and `cloudflare_waf_enabled = false`, then `terraform apply`.
 2. **Full revert to DO DNS:** set `cloudflare_dns_enabled = false` and `cloudflare_enabled = false`, then `terraform apply`. Revert registrar NS to DigitalOcean if needed.
 
-## Bootstrap (one-time)
+## First-time setup
 
-### 1. Create remote state bucket
-
-```bash
-cd infra/environments/bootstrap-state-bucket
-export TF_VAR_do_token="dop_v1_..."
-export TF_VAR_spaces_access_key_id="..."
-export TF_VAR_spaces_secret_access_key="..."
-terraform init && terraform apply
-```
-
-### 2. Migrate prod to remote state
-
-```bash
-cd infra/environments/prod
-export AWS_ACCESS_KEY_ID="..."      # Spaces access key
-export AWS_SECRET_ACCESS_KEY="..."  # Spaces secret
-export TF_VAR_do_token="dop_v1_..."
-terraform init -migrate-state
-```
-
-### 3. Connect GitHub to DigitalOcean
+### 1. Connect GitHub to DigitalOcean
 
 In the DigitalOcean console, authorize App Platform to access `nmandiveyi/portfolio` (same OAuth flow as nocura-ui).
 
-### 4. First apply
-
-With Cloudflare flags all `false`:
+### 2. Apply infrastructure
 
 ```bash
+cd infra/environments/prod
+export TF_VAR_do_token="dop_v1_..."
+terraform init
 terraform apply
 ```
+
+With Cloudflare flags all `false`, the first apply creates the DO DNS zone + App Platform app + custom domains.
 
 Verify the default ingress URL serves the built site:
 
@@ -87,9 +73,32 @@ Verify the default ingress URL serves the built site:
 terraform output -raw frontend_default_ingress
 ```
 
-### 5. Configure GitHub Actions secrets
+After that, pushes to `main` trigger App Platform rebuilds automatically — no CI deploy workflow required.
 
-See [`docs/github-actions-config.md`](docs/github-actions-config.md). Create **`production`** and **`production-destroy`** GitHub environments for apply/destroy workflows.
+### 3. Cloudflare (optional, phased)
+
+Set flags in an untracked `terraform.local.tfvars` or via `TF_VAR_*` exports, one phase at a time:
+
+```bash
+# infra/environments/prod/terraform.local.tfvars (gitignored)
+cloudflare_enabled       = true
+cloudflare_dns_enabled   = false
+cloudflare_proxy_enabled = false
+cloudflare_waf_enabled   = false
+```
+
+Also export Cloudflare credentials when enabling:
+
+```bash
+export TF_VAR_cloudflare_api_token="..."
+export TF_VAR_cloudflare_account_id="..."
+```
+
+After Phase 1 apply, update registrar NS using:
+
+```bash
+terraform output -json cloudflare_nameservers
+```
 
 ## Local development overrides
 
@@ -116,13 +125,3 @@ export TF_VAR_cloudflare_account_id="..."
 - **Apex:** `nmandiveyi.com` (PRIMARY)
 - **WWW:** `www.nmandiveyi.com` (ALIAS)
 - **Deploy branch:** `main` (App Platform `deploy_on_push`)
-
-## CI workflows
-
-Workflows live at the repo root (`.github/workflows/terraform-*.yml`) and run against `infra/environments/prod`:
-
-- **terraform-plan.yml** — runs on PRs to `main` that touch `infra/**`
-- **terraform-apply.yml** — manual dispatch on `main` (requires `production` environment)
-- **terraform-destroy.yml** — manual dispatch with typed confirmation (requires `production-destroy` environment)
-
-App deploys are automatic on push to `main` via App Platform — no separate frontend CI deploy workflow needed.

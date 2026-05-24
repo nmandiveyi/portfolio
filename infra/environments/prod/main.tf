@@ -1,6 +1,7 @@
 locals {
-  root_domain = "nmandiveyi.com"
-  www_domain  = "www.${local.root_domain}"
+  root_domain       = "nmandiveyi.com"
+  www_domain        = "www.${local.root_domain}"
+  frontend_site_url = "https://www.${local.root_domain}"
 
   cf_phase_levels_ok = (
     (!var.cloudflare_dns_enabled || var.cloudflare_enabled) &&
@@ -23,6 +24,7 @@ module "frontend" {
   source_dir  = "/"
   domain      = local.root_domain
   www_domain  = local.www_domain
+  site_url    = local.frontend_site_url
 
   manage_dns_zone = !var.cloudflare_dns_enabled
 }

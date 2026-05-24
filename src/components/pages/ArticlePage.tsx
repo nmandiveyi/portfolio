@@ -1,5 +1,7 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import { Link } from '@tanstack/react-router'
+import Link from 'next/link'
 
 import { articleContent } from '@/content/articles'
 import type { ArticleSlug } from '@/data/articles'
@@ -38,7 +40,7 @@ export function ArticlePage({ slug }: ArticlePageProps) {
         style={{ background: 'rgba(13,13,11,0.97)', borderColor: 'var(--border)' }}
       >
         <Link
-          to="/"
+          href="/"
           className="group flex items-center gap-3 font-mono text-[11px] font-light tracking-[0.12em] text-[var(--muted)] uppercase no-underline transition-colors duration-200 hover:text-[var(--accent)]"
         >
           <span className="transition-transform duration-200 group-hover:-translate-x-1">←</span>
@@ -68,8 +70,7 @@ export function ArticlePage({ slug }: ArticlePageProps) {
           </div>
 
           <h1 className="mb-6 font-serif text-[clamp(36px,5vw,60px)] leading-[1.1] font-normal tracking-[-0.02em] text-[var(--text)]">
-            Life at the Edge: How{' '}
-            <em className="text-[var(--accent)] italic">P. Torridus</em> Survives at pH 0
+            {article.title}
           </h1>
 
           <div className="mb-10 font-serif text-[20px] leading-[1.5] font-normal text-[var(--muted)] italic">
@@ -97,7 +98,7 @@ export function ArticlePage({ slug }: ArticlePageProps) {
 
         <div className="mt-20 flex items-center justify-between border-t border-[var(--border)] pt-12">
           <Link
-            to="/"
+            href="/"
             className="group flex items-center gap-3 font-mono text-[11px] font-light tracking-[0.12em] text-[var(--muted)] uppercase no-underline transition-colors duration-200 hover:text-[var(--accent)]"
           >
             <span className="transition-transform duration-200 group-hover:-translate-x-1">←</span>

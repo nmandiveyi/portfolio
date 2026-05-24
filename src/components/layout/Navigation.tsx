@@ -1,4 +1,6 @@
-import { Link } from '@tanstack/react-router'
+'use client'
+
+import Link from 'next/link'
 
 import { site } from '@/data/site'
 import { type } from '@/lib/typography'
@@ -17,7 +19,7 @@ export function Navigation() {
         background: 'linear-gradient(to bottom, rgba(13,13,11,0.95) 0%, transparent 100%)',
       }}
     >
-      <Link to="/" className={`${type.navBrand} no-underline`}>
+      <Link href="/" className={`${type.navBrand} no-underline`}>
         {site.shortName}
       </Link>
 

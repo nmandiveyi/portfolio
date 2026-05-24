@@ -1,46 +1,45 @@
 # Ngonidzashe Mandiveyi — Portfolio
 
-Personal portfolio site built with React 19, Vite, Tailwind CSS v4, TanStack Router, TanStack Query, Zustand, and shadcn/ui.
+Personal portfolio site built with Next.js 16, React 19, Tailwind CSS v4, and shadcn/ui.
 
 ## Stack
 
-- **React 19** + TypeScript
-- **Vite** — dev server and production build
+- **Next.js 16** (App Router) + TypeScript
 - **Tailwind CSS v4** — styling and design tokens
 - **shadcn/ui** — UI primitives (Button)
-- **TanStack Router** — type-safe routing
-- **TanStack Query** — ready for external API fetching
 - **Zustand** — client state (mobile navigation)
-- **React Hook Form + Zod** — ready for future forms
 
 ## Getting started
 
 ```bash
 pnpm install
+export NEXT_PUBLIC_SITE_URL=http://localhost:3001
 pnpm dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173).
+Open [http://localhost:3001](http://localhost:3001).
 
 ## Scripts
 
 | Command | Description |
 |---------|-------------|
-| `pnpm dev` | Start development server |
-| `pnpm build` | Type-check and build for production |
-| `pnpm preview` | Preview production build locally |
-| `pnpm lint` | Run TypeScript checks |
+| `pnpm dev` | Start development server on port 3001 |
+| `pnpm build` | Production build |
+| `pnpm start` | Run production server on port 3001 |
+| `pnpm lint` | ESLint |
+| `pnpm typecheck` | TypeScript check |
 
 ## Project structure
 
 ```
+app/              # Next.js App Router (layout, pages, sitemap)
 src/
   components/     # Layout, sections, pages, UI
   content/        # Article body components
   data/           # Typed site content
-  routes/         # TanStack Router file routes
   stores/         # Zustand stores
-  styles/         # Theme and fonts
+  styles/         # Theme tokens
+infra/            # Terraform (DigitalOcean App Platform + Cloudflare)
 ```
 
 ## Adding content
@@ -50,4 +49,8 @@ src/
 
 ## Deployment
 
-Build output goes to `dist/`. Configure your static host with SPA fallback so client-side routes (e.g. `/article/...`) resolve correctly.
+- **App:** DigitalOcean App Platform runs `pnpm run build` then `pnpm start` (port 3001) on push to `main`
+- **Infra:** `terraform apply` from `infra/environments/prod` (local state)
+- **CI:** GitHub Actions runs lint, typecheck, and build on PRs to `main`
+
+Set `NEXT_PUBLIC_SITE_URL` to your canonical origin (e.g. `https://www.nmandiveyi.com`) in App Platform and locally for correct metadata/sitemap URLs.

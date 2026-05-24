@@ -1,4 +1,18 @@
-export const siteUrl = 'https://nmandiveyi.com'
+/** Public site origin for metadata, sitemap, and JSON-LD (no trailing slash). */
+export function getSiteUrl(): URL {
+  const fallback = 'http://localhost:3001'
+  let raw = process.env.NEXT_PUBLIC_SITE_URL?.trim() || fallback
+  raw = raw.replace(/\/+$/, '')
+  try {
+    return new URL(raw)
+  } catch {
+    return new URL(fallback)
+  }
+}
+
+export function getSiteOrigin(): string {
+  return getSiteUrl().origin
+}
 
 export const seo = {
   siteName: 'Ngonidzashe Mandiveyi',
@@ -11,7 +25,8 @@ export const seo = {
 
 export function canonicalUrl(path = '/') {
   const normalized = path.startsWith('/') ? path : `/${path}`
-  return `${siteUrl}${normalized === '/' ? '' : normalized}`
+  const base = getSiteOrigin()
+  return `${base}${normalized === '/' ? '' : normalized}`
 }
 
 export function pageTitle(page?: string) {
@@ -20,6 +35,7 @@ export function pageTitle(page?: string) {
 }
 
 export function personJsonLd() {
+  const origin = getSiteOrigin()
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -31,7 +47,7 @@ export function personJsonLd() {
       '@type': 'Organization',
       name: 'McKinsey & Company',
     },
-    url: siteUrl,
+    url: origin,
     email: 'ngonidzashehh@gmail.com',
     sameAs: [
       'https://www.linkedin.com/in/nmandiveyi/',
@@ -61,11 +77,12 @@ export function personJsonLd() {
 }
 
 export function webSiteJsonLd() {
+  const origin = getSiteOrigin()
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: seo.siteName,
-    url: siteUrl,
+    url: origin,
     description: seo.defaultDescription,
     inLanguage: 'en-CA',
     author: {
@@ -82,6 +99,7 @@ export function articleJsonLd(article: {
   date: string
   tag: string
 }) {
+  const origin = getSiteOrigin()
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -90,7 +108,7 @@ export function articleJsonLd(article: {
     author: {
       '@type': 'Person',
       name: 'Ngonidzashe Mandiveyi',
-      url: siteUrl,
+      url: origin,
     },
     publisher: {
       '@type': 'Person',
@@ -101,24 +119,4 @@ export function articleJsonLd(article: {
     datePublished: '2024-02-01',
     inLanguage: 'en-CA',
   }
-}
-
-export function openGraphMeta(options: {
-  title: string
-  description: string
-  path?: string
-  type?: 'website' | 'article'
-}) {
-  const url = canonicalUrl(options.path ?? '/')
-  return [
-    { property: 'og:type', content: options.type ?? 'website' },
-    { property: 'og:site_name', content: seo.siteName },
-    { property: 'og:title', content: options.title },
-    { property: 'og:description', content: options.description },
-    { property: 'og:url', content: url },
-    { property: 'og:locale', content: seo.locale },
-    { name: 'twitter:card', content: 'summary' },
-    { name: 'twitter:title', content: options.title },
-    { name: 'twitter:description', content: options.description },
-  ]
 }

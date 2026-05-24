@@ -3,14 +3,11 @@ resource "digitalocean_app" "this" {
     name   = var.name
     region = var.region
 
-    static_site {
-      name              = "web"
-      source_dir        = var.source_dir
-      environment_slug  = "node-js"
-      build_command     = var.build_command
-      output_dir        = var.output_dir
-      index_document    = "index.html"
-      catchall_document = "index.html"
+    service {
+      name               = "web"
+      instance_size_slug = "apps-s-1vcpu-0.5gb"
+      instance_count     = 1
+      source_dir         = var.source_dir
 
       github {
         repo           = var.github_repo
@@ -18,16 +15,14 @@ resource "digitalocean_app" "this" {
         deploy_on_push = true
       }
 
-      env {
-        key   = "PNPM_SKIP_PRUNING"
-        value = "true"
-        scope = "BUILD_TIME"
-      }
+      build_command = "pnpm run build"
+      run_command   = "pnpm start"
+      http_port     = 3001
 
       env {
-        key   = "PNPM_VERSION"
-        value = "9.15.9"
-        scope = "BUILD_TIME"
+        key   = "NEXT_PUBLIC_SITE_URL"
+        value = var.site_url
+        scope = "RUN_AND_BUILD_TIME"
       }
     }
 

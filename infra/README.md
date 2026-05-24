@@ -1,10 +1,10 @@
 # portfolio-infra
 
-Terraform for deploying the portfolio site (Vite + React SPA) to DigitalOcean App Platform, with optional phased Cloudflare DNS and WAF in front of the static site.
+Terraform for deploying the portfolio site (Next.js on DigitalOcean App Platform), with optional phased Cloudflare DNS and WAF in front of the Node service.
 
 **State:** local only (`terraform.tfstate` in `environments/prod/` — gitignored). Run `terraform apply` from your laptop.
 
-**App deploys:** automatic on push to `main` via App Platform `deploy_on_push`. No GitHub Actions workflows needed for infra or frontend deploys.
+**App deploys:** automatic on push to `main` via App Platform `deploy_on_push` (`pnpm run build` → `pnpm start` on port 3001).
 
 ## Layout
 
@@ -15,7 +15,7 @@ modules/
   cloudflare/                 # CF zone, zone settings, lightweight WAF rulesets
   cloudflare-dns/             # CF apex/www CNAME records → App Platform
   dns/                        # (optional) DO apex zone — unused; App Platform uses an existing DO DNS zone
-  frontend/                   # App Platform static site (Vite build → dist/)
+  frontend/                   # App Platform Node service (Next.js)
 ```
 
 ## Request path (post-rollout end state)
@@ -25,10 +25,10 @@ Client (browser)
   │ HTTPS
   ▼
 Cloudflare edge (optional WAF, Bot Fight Mode)
-  │ apex / www ──▶ DigitalOcean App Platform (static site)
+  │ apex / www ──▶ DigitalOcean App Platform (Next.js service :3001)
                        │ build from GitHub main on push
                        ▼
-                     nmandiveyi/portfolio → pnpm run build → dist/
+                     nmandiveyi/portfolio → pnpm run build → pnpm start
 ```
 
 ## Cloudflare rollout
@@ -130,4 +130,4 @@ export TF_VAR_cloudflare_account_id="..."
 
 - **Apex:** `nmandiveyi.com` (PRIMARY)
 - **WWW:** `www.nmandiveyi.com` (ALIAS)
-- **Deploy branch:** `main` (App Platform `deploy_on_push`)
+- **Deploy branch:** `main` (App Platform `deploy_on_push`, Next.js on port 3001)

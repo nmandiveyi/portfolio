@@ -77,17 +77,17 @@ After that, pushes to `main` trigger App Platform rebuilds automatically — no 
 
 ### 3. Cloudflare (optional, phased)
 
-Set flags in an untracked `terraform.local.tfvars` or via `TF_VAR_*` exports, one phase at a time:
+Set flags in `portfolio.auto.tfvars` (gitignored, auto-loaded) or via `TF_VAR_*` exports, one phase at a time:
 
 ```bash
-# infra/environments/prod/terraform.local.tfvars (gitignored)
+# infra/environments/prod/portfolio.auto.tfvars
 cloudflare_enabled       = true
 cloudflare_dns_enabled   = false
 cloudflare_proxy_enabled = false
 cloudflare_waf_enabled   = false
 ```
 
-Also export Cloudflare credentials when enabling:
+Also set Cloudflare credentials in the same file or export them:
 
 ```bash
 export TF_VAR_cloudflare_api_token="..."
@@ -102,17 +102,17 @@ terraform output -json cloudflare_nameservers
 
 ## Local development overrides
 
-Never commit secrets. Use an untracked file:
+Never commit secrets. Edit `portfolio.auto.tfvars` (gitignored, auto-loaded):
 
 ```bash
-# infra/environments/prod/terraform.local.tfvars (gitignored)
+# infra/environments/prod/portfolio.auto.tfvars
 cloudflare_enabled       = false
 cloudflare_dns_enabled   = false
 cloudflare_proxy_enabled = false
 cloudflare_waf_enabled   = false
 ```
 
-Pass tokens via environment:
+Or pass tokens via environment:
 
 ```bash
 export TF_VAR_do_token="dop_v1_..."

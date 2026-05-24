@@ -7,6 +7,7 @@ import { articleContent } from '@/content/articles'
 import type { ArticleSlug } from '@/data/articles'
 import { getArticleBySlug } from '@/data/articles'
 import { site } from '@/data/site'
+import { SpeciesHighlight } from '@/components/shared/SpeciesHighlight'
 
 interface ArticlePageProps {
   slug: ArticleSlug
@@ -70,11 +71,11 @@ export function ArticlePage({ slug }: ArticlePageProps) {
           </div>
 
           <h1 className="mb-6 font-serif text-[clamp(36px,5vw,60px)] leading-[1.1] font-normal tracking-[-0.02em] text-[var(--text)]">
-            {article.title}
+            <SpeciesHighlight text={article.title} />
           </h1>
 
           <div className="mb-10 font-serif text-[20px] leading-[1.5] font-normal text-[var(--muted)] italic">
-            {article.subtitle}
+            <SpeciesHighlight text={article.subtitle} />
           </div>
 
           <div className="flex items-center gap-8 border-t border-b border-[var(--border)] py-6">

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 
 import { SectionHeader } from '@/components/shared/SectionHeader'
+import { SpeciesHighlight } from '@/components/shared/SpeciesHighlight'
 import { articles } from '@/data/articles'
 import { type } from '@/lib/typography'
 
@@ -27,9 +28,13 @@ export function WritingSection() {
           >
             <div className={`mb-4 ${type.eyebrow}`}>{article.tag}</div>
 
-            <div className={`mb-4 ${type.cardTitle}`}>{article.title}</div>
+            <div className={`mb-4 ${type.cardTitle}`}>
+              <SpeciesHighlight text={article.title} />
+            </div>
 
-            <div className={`mb-6 ${type.body}`}>{article.excerpt}</div>
+            <div className={`mb-6 ${type.body}`}>
+              <SpeciesHighlight text={article.excerpt} />
+            </div>
 
             <div className="mb-6 flex flex-wrap gap-[0.4rem]">
               {article.chips.map((chip) => (

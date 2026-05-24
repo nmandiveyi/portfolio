@@ -2,7 +2,7 @@ export const articles = [
   {
     slug: 'p-torridus-extremophile',
     tag: 'Science · Biology',
-    title: 'Life at the Edge: How P. Torridus Survives at pH 0',
+    title: 'Life at the Edge: How P. torridus Survives at pH 0',
     date: 'Feb 2024',
     readTime: '6 min read',
     excerpt:

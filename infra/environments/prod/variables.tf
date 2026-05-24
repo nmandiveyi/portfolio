@@ -4,6 +4,11 @@ variable "do_token" {
   sensitive   = true
 }
 
+variable "do_project_id" {
+  description = "DigitalOcean project UUID for the App Platform app. List with: doctl projects list"
+  type        = string
+}
+
 variable "environment" {
   description = "Environment"
   type        = string

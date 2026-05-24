@@ -29,6 +29,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  icons: {
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+    shortcut: '/favicon.svg',
+  },
+  manifest: '/site.webmanifest',
 }
 
 export const viewport: Viewport = {

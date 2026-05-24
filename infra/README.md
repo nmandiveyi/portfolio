@@ -61,6 +61,7 @@ In the DigitalOcean console, authorize App Platform to access `nmandiveyi/portfo
 ```bash
 cd infra/environments/prod
 export TF_VAR_do_token="dop_v1_..."
+# or set do_token and do_project_id in portfolio.auto.tfvars (see below)
 terraform init
 terraform apply
 ```
@@ -112,6 +113,9 @@ Never commit secrets. Edit `portfolio.auto.tfvars` (gitignored, auto-loaded):
 
 ```bash
 # infra/environments/prod/portfolio.auto.tfvars
+do_token       = "dop_v1_..."
+do_project_id  = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"  # doctl projects list
+
 cloudflare_enabled       = false
 cloudflare_dns_enabled   = false
 cloudflare_proxy_enabled = false

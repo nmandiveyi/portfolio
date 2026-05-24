@@ -43,3 +43,8 @@ variable "manage_dns_zone" {
   type        = bool
   default     = true
 }
+
+variable "project_id" {
+  description = "DigitalOcean project UUID. Without this, the app is created in your account default project."
+  type        = string
+}

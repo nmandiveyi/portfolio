@@ -1,4 +1,6 @@
 resource "digitalocean_app" "this" {
+  project_id = var.project_id
+
   spec {
     name   = var.name
     region = var.region

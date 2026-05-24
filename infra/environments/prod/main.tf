@@ -27,6 +27,7 @@ module "frontend" {
   site_url    = local.frontend_site_url
 
   manage_dns_zone = !var.cloudflare_dns_enabled
+  project_id      = var.do_project_id
 }
 
 module "cloudflare" {

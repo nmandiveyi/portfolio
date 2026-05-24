@@ -1,5 +1,6 @@
-# do_token — set in portfolio.auto.tfvars (gitignored) or export TF_VAR_do_token:
+# do_token / do_project_id — set in portfolio.auto.tfvars (gitignored) or export TF_VAR_*:
 #   export TF_VAR_do_token="dop_v1_..."
+#   export TF_VAR_do_project_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 #
 # cloudflare_api_token / cloudflare_account_id — same pattern; see portfolio.auto.tfvars.
 #

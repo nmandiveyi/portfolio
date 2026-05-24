@@ -27,6 +27,11 @@ export function AboutSection() {
                 <a href={detail.link} className={`min-w-0 shrink text-right no-underline ${type.bodyAccent}`}>
                   {detail.value}
                 </a>
+              ) : detail.label === 'Building' ? (
+                <span className={`min-w-0 shrink text-right ${type.bodyEmphasis}`}>
+                  <em className="text-[var(--accent)] italic">NOCURA</em>
+                  {' — IRCC NOC analysis'}
+                </span>
               ) : (
                 <span className={`min-w-0 shrink text-right whitespace-pre-line ${type.bodyEmphasis}`}>
                   {detail.value}

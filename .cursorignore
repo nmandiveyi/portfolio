@@ -1,0 +1,16 @@
+# Hide generated/local files from Cursor (mirrors .gitignore)
+node_modules/
+.pnpm-store/
+dist/
+build/
+.tanstack/
+*.tsbuildinfo
+.DS_Store
+.env
+.env.*
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+**/*.auto.tfvars
+**/terraform.local.tfvars

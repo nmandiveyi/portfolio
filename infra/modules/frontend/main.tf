@@ -4,8 +4,13 @@ resource "digitalocean_app" "this" {
     region = var.region
 
     static_site {
-      name       = "web"
-      source_dir = var.source_dir
+      name              = "web"
+      source_dir        = var.source_dir
+      environment_slug  = "node-js"
+      build_command     = var.build_command
+      output_dir        = var.output_dir
+      index_document    = "index.html"
+      catchall_document = "index.html"
 
       github {
         repo           = var.github_repo
@@ -13,10 +18,17 @@ resource "digitalocean_app" "this" {
         deploy_on_push = true
       }
 
-      build_command     = var.build_command
-      output_dir        = var.output_dir
-      index_document    = "index.html"
-      catchall_document = "index.html"
+      env {
+        key   = "PNPM_SKIP_PRUNING"
+        value = "true"
+        scope = "BUILD_TIME"
+      }
+
+      env {
+        key   = "PNPM_VERSION"
+        value = "9.15.9"
+        scope = "BUILD_TIME"
+      }
     }
 
     domain {

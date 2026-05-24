@@ -13,13 +13,6 @@ locals {
   )
 }
 
-module "dns" {
-  source = "../../modules/dns"
-  count  = var.cloudflare_dns_enabled ? 0 : 1
-
-  domain = local.root_domain
-}
-
 module "frontend" {
   source = "../../modules/frontend"
 
@@ -32,8 +25,6 @@ module "frontend" {
   www_domain  = local.www_domain
 
   manage_dns_zone = !var.cloudflare_dns_enabled
-
-  depends_on = [module.dns]
 }
 
 module "cloudflare" {

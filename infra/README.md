@@ -14,7 +14,7 @@ environments/
 modules/
   cloudflare/                 # CF zone, zone settings, lightweight WAF rulesets
   cloudflare-dns/             # CF apex/www CNAME records → App Platform
-  dns/                        # DigitalOcean DNS (apex zone only); disabled once CF DNS is active
+  dns/                        # (optional) DO apex zone — unused; App Platform uses an existing DO DNS zone
   frontend/                   # App Platform static site (Vite build → dist/)
 ```
 
@@ -65,7 +65,13 @@ terraform init
 terraform apply
 ```
 
-With Cloudflare flags all `false`, the first apply creates the DO DNS zone + App Platform app + custom domains.
+With Cloudflare flags all `false`, the first apply creates the App Platform app + custom domains. The apex domain must already exist under **DigitalOcean → Networking → Domains** (add it in the console if needed).
+
+### Troubleshooting: `domain 'nmandiveyi.com': name already exists`
+
+The DO DNS zone already exists in your account — skip creating it in Terraform (the prod root module no longer manages `digitalocean_domain`). Run `terraform apply` again.
+
+If App Platform still fails to attach the domain, confirm `nmandiveyi.com` appears under **Networking → Domains** in the DO dashboard. Add it there manually if missing, then re-apply.
 
 Verify the default ingress URL serves the built site:
 

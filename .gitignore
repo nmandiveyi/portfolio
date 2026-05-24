@@ -1,13 +1,18 @@
 # dependencies
-node_modules
-.pnpm-store
+node_modules/
+.pnpm-store/
 
 # build
-dist
-build
+dist/
+build/
+
+# dev caches
+.tanstack/
+*.tsbuildinfo
 
 # misc
 .DS_Store
+Thumbs.db
 *.local
 .env
 .env.*
@@ -16,18 +21,33 @@ build
 *.log
 npm-debug.log*
 pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# editor
+# editor / IDE
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
 
-# typescript
-*.tsbuildinfo
+# terraform (local state + secrets — never commit)
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfplan.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+**/terraform.local.tfvars
+**/*.auto.tfvars
 
-# terraform (local overrides only — never commit secrets)
-infra/**/*.local.tfvars
-infra/**/*.auto.tfvars
-infra/**/.terraform/
-infra/**/terraform.tfstate*
-infra/**/tfplan
-infra/**/destroy.tfplan
+# deployment platform configs (not used — App Platform via infra/)
+vercel.json

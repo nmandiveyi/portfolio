@@ -1,4 +1,6 @@
-import { Link } from '@tanstack/react-router'
+'use client'
+
+import Link from 'next/link'
 
 import { SectionHeader } from '@/components/shared/SectionHeader'
 import { articles } from '@/data/articles'
@@ -13,8 +15,7 @@ export function WritingSection() {
         {articles.map((article) => (
           <Link
             key={article.slug}
-            to="/article/$slug"
-            params={{ slug: article.slug }}
+            href={`/article/${article.slug}`}
             className="interactive relative block overflow-hidden p-6 no-underline transition-all duration-200 md:p-10"
             style={{ background: 'var(--surface)' }}
             onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {

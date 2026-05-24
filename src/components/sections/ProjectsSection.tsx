@@ -1,3 +1,5 @@
+'use client'
+
 import { SectionHeader } from '@/components/shared/SectionHeader'
 import { projects } from '@/data/projects'
 import { type } from '@/lib/typography'

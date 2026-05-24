@@ -18,7 +18,7 @@ variable "branch" {
 }
 
 variable "source_dir" {
-  description = "Path to app inside repo. Use / if repo root."
+  description = "Path to Next.js app inside repo. Use / if repo root."
   type        = string
   default     = "/"
 }
@@ -33,18 +33,13 @@ variable "www_domain" {
   type        = string
 }
 
+variable "site_url" {
+  description = "Canonical site origin for NEXT_PUBLIC_SITE_URL (no trailing slash), e.g. https://www.nmandiveyi.com"
+  type        = string
+}
+
 variable "manage_dns_zone" {
   description = "When true App Platform manages DNS via the DigitalOcean DNS zone. Set false once Cloudflare owns the zone."
   type        = bool
   default     = true
-}
-
-variable "build_command" {
-  type    = string
-  default = "pnpm run build"
-}
-
-variable "output_dir" {
-  type    = string
-  default = "dist"
 }

@@ -3,7 +3,7 @@ export const interests = [
     title: 'Tech & AI',
     description:
       'Building intelligent systems that solve real problems. Fascinated by the intersection of large language models, system design, and production engineering — especially the gap between demos and deployments that actually scale.',
-    tags: ['LLMs', 'System Architecture', 'MLOps', 'Prompt Engineering'],
+    tags: ['LLMs', 'System Architecture', 'Agentic Workflows', 'Software Engineering', 'DevOps'],
   },
   {
     title: 'Entrepreneurship',

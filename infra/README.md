@@ -133,5 +133,6 @@ export TF_VAR_cloudflare_account_id="..."
 ## Domain
 
 - **Apex:** `nmandiveyi.com` (PRIMARY)
-- **WWW:** `www.nmandiveyi.com` (ALIAS)
+- **WWW:** `www.nmandiveyi.com` (ALIAS, canonical)
 - **Deploy branch:** `main` (App Platform `deploy_on_push`, Next.js on port 3001)
+- **Starter URL:** DigitalOcean always assigns `*.ondigitalocean.app`; it cannot be deleted. Ingress redirects it with **301 → `www.nmandiveyi.com`** after `terraform apply`.

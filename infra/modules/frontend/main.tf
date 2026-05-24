@@ -39,5 +39,33 @@ resource "digitalocean_app" "this" {
       type = "ALIAS"
       zone = var.manage_dns_zone ? var.domain : null
     }
+
+    ingress {
+      rule {
+        component {
+          name = "web"
+        }
+
+        match {
+          path {
+            prefix = "/"
+          }
+        }
+      }
+
+      rule {
+        redirect {
+          authority     = var.www_domain
+          scheme        = "https"
+          redirect_code = 301
+        }
+
+        match {
+          authority {
+            exact = "$${STARTER_DOMAIN}"
+          }
+        }
+      }
+    }
   }
 }
